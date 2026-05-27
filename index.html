@@ -371,8 +371,8 @@ async function consultarPNCP(){
   let erro='';
 
   const endpoints=[
-    `https://pncp.gov.br/api/pncp/v1/contratos?cnpjFornecedor=${cnpj}&pagina=1&tamanhoPagina=${tam}`,
-    `https://pncp.gov.br/api/pncp/v1/compras?cnpjParticipante=${cnpj}&pagina=1&tamanhoPagina=${tam}`,
+    `/api/pncp?endpoint=contratos&cnpj=${cnpj}&tamanhoPagina=${tam}`,
+    `/api/pncp?endpoint=compras&cnpj=${cnpj}&tamanhoPagina=${tam}`,
   ];
 
   for(const url of endpoints){
