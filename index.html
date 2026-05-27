@@ -478,7 +478,8 @@ window.homologar = async function(id) {
   if (!confirm('Marcar como homologado?\n' + p.tipo + ' N° ' + p.num)) return;
   try {
     await deleteDoc(doc(db, 'ativos', id));
-    await addDoc(colVencidos, { ...p, id: undefined, dtHom: new Date().toLocaleDateString('pt-BR'), criadoEm: serverTimestamp() });
+    const { id: _id1, ...pSemId1 } = p;
+    await addDoc(colVencidos, { ...pSemId1, dtHom: new Date().toLocaleDateString('pt-BR'), criadoEm: serverTimestamp() });
     toast('Movido para Homologados!', 'green');
     window.aba('vencidos');
   } catch(e) { toast('Erro: ' + e.message, 'red'); }
@@ -490,7 +491,8 @@ window.pagar = async function(id) {
   if (!confirm('Marcar como pago?\n' + p.tipo + ' N° ' + p.num)) return;
   try {
     await deleteDoc(doc(db, 'vencidos', id));
-    await addDoc(colPagos, { ...p, id: undefined, dtPag: new Date().toLocaleDateString('pt-BR'), criadoEm: serverTimestamp() });
+    const { id: _id2, ...pSemId2 } = p;
+    await addDoc(colPagos, { ...pSemId2, dtPag: new Date().toLocaleDateString('pt-BR'), criadoEm: serverTimestamp() });
     toast('Movido para Pagos!', 'green');
   } catch(e) { toast('Erro: ' + e.message, 'red'); }
 };
